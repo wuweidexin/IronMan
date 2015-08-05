@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile (
+       //json 
+		'net.sf.json-lib:json-lib:2.4:jdk15',
+		
+		"org.apache.httpcomponents:httpclient:4.3.3",
+   		"org.apache.httpcomponents:httpcore:4.3.2",
+   		"org.apache.httpcomponents:httpmime:4.3.3",
+   		"org.slf4j:slf4j-api:1.6.1",
+   		"org.springframework:spring-core:4.2.0.RELEASE",
+   		'org.springframework:spring-beans:4.2.0.RELEASE',
+   		'org.springframework:spring-context:4.2.0.RELEASE',
+   		'org.springframework:spring-webmvc:4.2.0.RELEASE',
+   		"com.fasterxml.jackson.core:jackson-core:2.1.0",
+   		"com.fasterxml.jackson.jackson-annotations:2.1.0",
+   		"com.fasterxml.jackson.core:jackson-databind:2.1.0",
+        ) 
+}
+
