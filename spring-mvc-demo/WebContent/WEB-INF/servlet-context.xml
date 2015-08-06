@@ -18,7 +18,9 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="/WEB-INF/config/config.properties" />
 	</bean>
-     
+    <!-- 如果有资源文件，一定要标注出来，否则会被拦截，一定要记住 --> 
+    <mvc:resources location="/views/image/" mapping="/views/image/**"/> 
+	<mvc:resources location="/views/js/" mapping="/views/js/*.*"/> 
  
      <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean --> 
      <context:component-scan base-package="com.chen.services" /> 
