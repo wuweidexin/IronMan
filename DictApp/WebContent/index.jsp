@@ -8,14 +8,17 @@
 </head>
 
 <body>
-	<form name="form">
+	<div style="text-align:center; margin-top:100px">
+	<form>
 		<p>
-			原文：<input type="text" name="srctext" required="required"/>
+			原文：<input id="srctext" type="text"/>
 		</p>
-		<input type="submit" value="确认" />
+		<input id="translate" type="button" value="确认"/>
 	</form>
-	<div id="translate"></div>
-
+	译文：
+	<div style="text-align:center; margin-top:20px"></div>
+	<div id="show"></div>
+	</div>
 </body>
 
 </html>

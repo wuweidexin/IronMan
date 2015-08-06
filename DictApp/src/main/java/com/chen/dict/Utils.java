@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 public class Utils {
 	private static Logger logger = LoggerFactory.getLogger(Utils.class);
 	static int HTTP_OK = 200;
-	
+	//params.add(new BasicNameValuePair("pwd","2544"));
 	public static String sendPost(String url, List<NameValuePair> params){
 		HttpUriRequest httpPost = null;
 		try {
@@ -47,7 +47,7 @@ public class Utils {
 			if (isRequestSuccessful(httpResponse)) {
 				HttpEntity httpEntity = httpResponse.getEntity();
 				String response = EntityUtils.toString(httpEntity, "utf-8");
-				logger.info("发送http请求返回：{}", response);
+				logger.info("发送http请求返回：{}", response); 
 				return response;
 			}
 		} catch (ClientProtocolException e) {

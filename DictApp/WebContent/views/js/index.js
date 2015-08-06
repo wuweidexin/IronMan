@@ -1,17 +1,21 @@
-$(document).ready(function() {
-	$( "#form" ).submit(function( event ) {
-		 
-	    // If .required's value's length is zero
-	    if ( $( ".required" ).val().length === 0 ) {
-	 
-	        // Usually show some kind of error message here
-	 
-	        // Prevent the form from submitting
-	        event.preventDefault();
-	    } else {
-	 
-	        // Run $.ajax() here
-	    	alert("哈哈");
-	    }
-	});
-});
+$(document).ready(function(){
+	$("#translate").click(function(){
+		var txt = $("#srctext").val();
+		if(txt.trim().length > 0) {
+			$.post("translate",
+				  {
+				    text:txt
+				  },
+				  function(result){
+					  var d = result.data;
+					  d = d.replace(/"/g, '');
+					  $("#show").text(d);
+				  }
+			 );
+		
+			
+		} else {
+			$("#show").text('请输入值');
+		}
+	})
+})

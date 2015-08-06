@@ -1,15 +1,15 @@
-ÓÐµÀ´ÊµäÇëÇó·½Ê½£º
-µØÖ·£º
+ï¿½Ðµï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½
+ï¿½ï¿½Ö·ï¿½ï¿½
 http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=https://www.google.com.hk/
 
-query param²ÎÊý
+query paramï¿½ï¿½ï¿½ï¿½
 
 smartresult:dict
 smartresult:rule
 smartresult:ugc
 sessionFrom:https://www.baidu.com
 
-²ÎÊý£º
+
 type:AUTO
 i:late
 doctype:json
@@ -19,7 +19,6 @@ ue:UTF-8
 action:FY_BY_CLICKBUTTON
 typoResult:true
 
-·µ»Ø½á¹û£º
 {
     "type": "EN2ZH_CN",
     "errorCode": 0,
@@ -28,7 +27,7 @@ typoResult:true
         [
             {
                 "src": "chrome",
-                "tgt": "¸õ"
+                "tgt": ""
             }
         ]
     ],
@@ -36,7 +35,7 @@ typoResult:true
         "type": 1,
         "entries": [
             "",
-            "n. ¸õ£¬¸õºÏ½ð£»¸õ»Æ£»¹È¸èä¯ÀÀÆ÷"
+            "n. "
         ]
     }
 }
