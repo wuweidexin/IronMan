@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbProblemAudit" table="tb_problem_audit">
+        <id name="paId" type="java.lang.Integer">
+            <column name="pa_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbUser" class="com.cissst.entity.TbUser" fetch="select">
+            <column name="u_id" />
+        </many-to-one>
+        <many-to-one name="tbProblem" class="com.cissst.entity.TbProblem" fetch="select">
+            <column name="p_id" />
+        </many-to-one>
+        <property name="paTime" type="java.lang.String">
+            <column name="pa_time" length="50" />
+        </property>
+        <property name="paComplaint" type="java.lang.String">
+            <column name="pa_complaint" length="500" />
+        </property>
+        <property name="paDel" type="java.lang.String">
+            <column name="pa_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

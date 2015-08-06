@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="myExamPlanAction" extends="struts-default">
+		<action name="examPlanAction" class="examPlanAction">
+			<result name="examprojectquery">/examProject/examProjectQuery.jsp</result>
+			<result name="examprojectadd">/examProject/examProjectAdd.jsp</result>
+			<result name="examprojectissue">/examProject/examProjectIssue.jsp</result>
+			<result name="examprojectcancel">/examProject/examProjectCancel.jsp</result>			
+			<result name="classnumquery">/class/classQuery3.jsp</result>			
+			<result name="examschemenamequery">/examScheme/examSchemeQuery3.jsp</result>
+			<result name="number">/examScheme/examSchemeQuery4.jsp</result>
+			<result name="problemNum">/quesLib/quesLibQuery3.jsp</result>
+			<result name="examplancancelnum">/examProject/examProjectCancel2.jsp</result>
+			<result name="examplanissuenum">/examProject/examProjectIssue2.jsp</result>
+			<result name="examplanquerynum">/examProject/examProjectQuery2.jsp</result>
+			<result name="exam">/examProject/exam.jsp</result>
+			<result name="examPage">/examProject/examPage.jsp</result>	
+			<result name="examProjectQuery3">/examProject/examProjectQuery3.jsp</result>
+			<result name="examProjectIssue3">/examProject/examProjectIssue3.jsp</result>
+		</action>
+	</package>
+</struts>

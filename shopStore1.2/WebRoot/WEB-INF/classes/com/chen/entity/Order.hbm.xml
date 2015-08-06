@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.chen.entity.Order" table="tb_order">
+		<id name="id" type="integer">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="orderID" type="string" column="orderID" />
+		<property name="totalPrice" type="double" column="totalPrice" />
+		<property name="carriagePaid" type="double" column="carriagePaid" />
+		<property name="orderTime" type="string" column="orderTime" />
+		<property name="deliveryMethod" type="string" column="deliveryMethod" />
+		<property name="orderState" type="integer" column="orderState" />
+		<property name="recieverName" type="string" column="recieverName" />
+		<property name="recieverOphone" type="string" column="recieverOphone" />
+		<property name="recieverAddress" type="string" column="recieverAddress" />
+		<property name="moneySendMethod" type="string" column="moneySendMethod" />
+		
+		<many-to-one name="customer" column="c_o_fk" class="com.chen.entity.Customer" lazy ="false"/>
+		
+		<set name="book" table="tb_book_order" 
+			fetch="join" lazy="false">
+			<key column="o_b_fk" />
+			<many-to-many class="com.chen.entity.Book" column="b_o_fk" />
+		</set>
+		
+	</class>
+</hibernate-mapping>

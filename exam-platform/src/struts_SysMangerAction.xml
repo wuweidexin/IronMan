@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="mySystemsettingAction" extends="struts-default">
+		<interceptors>
+			<interceptor name="myintecept" class="com.cissst.utils.InterceptUtil" />
+		</interceptors>
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<action name="systemsettingAction" class="systemsettingAction">
+			<result name="userSetting">/setting/userSetting.jsp</result>
+			<result name="toAddUser">/setting/userSetting2.jsp</result>
+			<result name="toUpdateUser">/setting/userSetting3.jsp</result>
+
+			<result name="qlTypeSetting">/setting/qlTypeSetting.jsp</result>
+			<result name="toAddQlType">/setting/qlTypeSetting1.jsp</result>
+			<result name="toUpdateQlType">/setting/qlTypeSetting3.jsp</result>
+
+
+			<result name="qlRangeSetting">/setting/qlRangeSetting.jsp</result>
+			<result name="toAddQlRange">/setting/qlRangeSetting1.jsp</result>
+			<result name="toUpdateQlRange">/setting/qlRangeSetting3.jsp</result>
+
+			<result name="qlDifficultySetting">/setting/qlDifficultySetting.jsp</result>
+			<result name="toAddQlDifficulty">/setting/qlDifficultySetting1.jsp</result>
+			<result name="toUpdateQlDifficutly">/setting/qlDifficultySetting3.jsp</result>
+
+			<result name="classTypeSetting">/setting/classTypeSetting.jsp</result>
+			<result name="toAddClassType">/setting/classTypeSetting1.jsp</result>
+			<result name="toUpdateClassType">/setting/classTypeSetting2.jsp</result>
+
+			<result name="studentTypeSetting">/setting/studentTypeSetting.jsp</result>
+			<result name="toAddStudentType">/setting/studentTypeSetting1.jsp</result>
+			<result name="toUpdateStudentType">/setting/studentTypeSetting2.jsp</result>
+
+			<result name="noPrivilege">/noPrivilege.jsp</result>
+			<!--错误页面:用户名或者密码错误，登录失败!-->
+			<!--			<result name="backIndexByError">/giveErrorMsg.jsp</result>-->
+			<interceptor-ref name="myintecept" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+	</package>
+</struts>

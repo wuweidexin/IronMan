@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mycob" basedir="." default="all">
+    
+    <!-- set project property -->
+	<property name="work.dir" location="D:/com.zhhy.ws/apache-tomcat-7.0.40/webapps/web"/>
+    <property name="src.dir" location="src/main/java"/>
+    <property name="src.web.dir" location="src/main/webapp"/>
+    <property name="classes.dir" location="target/classes"/>    
+    <property name="webapps.dir" location="${work.dir}"/>
+    <property name="lib.web.runtime.dir" value="${webapps.dir}/WEB-INF/lib"/>   
+    <property name="classes.web.runtime.dir" value="${webapps.dir}/WEB-INF/classes"/>   
+    <property name="web.jar.dir" location="${lib.web.runtime.dir}"/>    
+    <property name="app.jar.dir" location="${web.jar.dir}"/>
+    <property name="jar.name" value="${ant.project.name}.jar"/>
+    
+    <!-- set classpath -->
+    <path id="classpath">
+        <fileset dir="${lib.web.runtime.dir}">
+            <include name="**/*.jar"/>
+        	<exclude name="mycob.jar"/>
+        </fileset>  
+    </path>
+    
+    <!-- initialize -->
+    <target name="init">
+        <echo>${ant.project.name} initialize compile directory</echo>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${app.jar.dir}"/>
+    </target>
+    
+    <!-- clear compiled file -->
+    <target name="clean">
+        <echo>${ant.project.name} clear compiled file</echo>
+        <delete includeEmptyDirs="true">
+            <fileset dir="${classes.dir}">
+                <include name="/**"/>
+            </fileset>
+        </delete>
+    </target>
+    
+    <!-- compile java file -->
+    <target name="compile" depends="clean,init">
+        <echo>${ant.project.name} compile java file</echo>
+        <javac debug="true" deprecation="true" destdir="${classes.dir}" srcdir="${src.dir}" includeantruntime="build.sysclasspath=last" encoding="utf-8">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+    
+    <!-- copy resource to compile directory -->
+    <target name="copyresource">
+        <echo>${ant.project.name} copy resource to compile  directory</echo>
+        <copy todir="${classes.dir}" verbose="true">       
+            <fileset dir="${src.dir}">
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+                <exclude name="**/build.xml"/>
+                <exclude name="**/conf/**/*.xml"/>
+                <exclude name="version.properties"/>
+            </fileset>   
+        </copy>
+        <copy todir="${classes.web.runtime.dir}" verbose="true">       
+            <fileset dir="${src.dir}">
+                <include name="**/*.properties"/>
+                <include name="*.xml"/>
+                <exclude name="**/build.xml"/>
+                <exclude name="version.properties"/>
+            </fileset>   
+        </copy>
+    </target>
+    
+    <!-- generate manifest.mf -->
+    <target name="manifest">
+        <echo>${ant.project.name} generate manifest.mf</echo>
+        <manifest file="${classes.dir}/MANIFEST.MF">    
+            <attribute name="Implementation-Title" value="" />            
+        </manifest>
+    </target>
+    
+    
+    <!-- build jar file -->
+    <target name="jar" depends="version,compile,copyresource,manifest">
+        <echo>${ant.project.name} build jar file</echo>
+        <jar basedir="${classes.dir}" manifest="${classes.dir}/MANIFEST.MF" compress="true" jarfile="${app.jar.dir}/${jar.name}">           
+            <include name="**"/>
+            <exclude name="**/conf/**/*.xml"/>
+            <exclude name="**/*.properties"/>
+            <exclude name="MANIFEST.MF"/>
+        </jar>        
+    </target>   
+    
+    <!-- copy web files to deploy directory -->
+    <target name="copyweb">
+        <echo>${ant.project.name} copy web files to deploy directory</echo>
+        <copy todir="${webapps.dir}" verbose="true">
+            <fileset dir="${src.web.dir}">
+                <include name="*.*"/>
+                <include name="**/*.*"/>
+                <include name="WEB-INF/*.xml"/>
+                <exclude name="**/build.xml"/>
+                <!--
+                <exclude name="**/web.xml"/>
+                -->
+                <exclude name="**/.svn/**"/>
+                <exclude name="WEB-INF/classes/**"/>
+            </fileset>
+        </copy>
+        <copy todir="${classes.web.runtime.dir}" verbose="true">       
+            <fileset dir="${src.dir}">
+                <include name="**/conf/**/*.xml"/>
+                <exclude name="**/build.xml"/>
+            </fileset>   
+        </copy>
+    </target>   
+    
+    
+    <!-- build version infomation -->
+    <target name="changeversion">
+        <echo>${ant.project.name} build version infomation</echo>
+        <propertyfile file="version.properties" comment="version">
+            <entry key="project.version" type="int" default="000001" operation="+" pattern="000000"/>
+            <entry key="project.complie.date" type="date" value="now" pattern="yyyyMMddHHmm"/>
+        </propertyfile>
+    </target>
+    
+    <!-- modify version infomation -->
+    <target name="version" depends="changeversion">
+        <echo>${ant.project.name} modify version infomation</echo>
+        <property file="version.properties"/>
+        <replaceregexp encoding="utf-8"  match="&quot; version=&quot;(.+)&quot;"
+         replace="&quot; version=&quot;${project.version}.v${project.complie.date}&quot;">
+            <fileset dir=".." includes="**/publish.xml" />
+        </replaceregexp>
+    </target>
+    
+    
+    <!-- build all -->
+    <target name="all" depends="jar,copyweb" description="Build everything."/>
+    
+</project>
+

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbProblem" table="tb_problem">
+        <id name="PId" type="java.lang.Integer">
+            <column name="p_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbProblemType" class="com.cissst.entity.TbProblemType" fetch="select" lazy="false">
+            <column name="pt_id" />
+        </many-to-one>
+        <many-to-one name="tbProblemDifficultyLevel" class="com.cissst.entity.TbProblemDifficultyLevel" fetch="select" lazy="false">
+            <column name="pdl_id" />
+        </many-to-one>
+        <many-to-one name="tbAuditStatus" class="com.cissst.entity.TbAuditStatus" fetch="select" lazy="false">
+            <column name="as_id" />
+        </many-to-one>
+        <many-to-one name="tbUser" class="com.cissst.entity.TbUser" fetch="select" lazy="false">
+            <column name="u_id" />
+        </many-to-one>
+        <many-to-one name="tbProblemScore" class="com.cissst.entity.TbProblemScore" fetch="select" lazy="false">
+            <column name="ps_id" />
+        </many-to-one>
+        <property name="PAddTime" type="java.lang.String">
+            <column name="p_add_time" length="50" />
+        </property>
+        <property name="PTitle" type="java.lang.String">
+            <column name="p_title" length="500" />
+        </property>
+        <property name="PDel" type="java.lang.String">
+            <column name="p_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+        <set name="tbExamPaperAnswers" inverse="true" lazy="false">
+            <key>
+                <column name="p_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamPaperAnswer" />
+        </set>
+        <set name="tbTacticsDetails" inverse="true" lazy="false">
+            <key>
+                <column name="p_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbTacticsDetail" />
+        </set>
+        <set name="tbProblemResults" inverse="true" lazy="false">
+            <key>
+                <column name="p_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbProblemResult" />
+        </set>
+        <set name="tbProblemAudits" inverse="true" lazy="false">
+            <key>
+                <column name="p_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbProblemAudit" />
+        </set>
+        <set name="tbExamSchemeProblems" inverse="true" lazy="false">
+            <key>
+                <column name="p_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamSchemeProblem" />
+        </set>
+    </class>
+</hibernate-mapping>

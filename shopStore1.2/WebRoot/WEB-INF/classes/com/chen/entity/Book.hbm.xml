@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="com.chen.entity.Book" table="tb_book">
+  <id name="id" type="integer">
+  <column name="id"/>
+   <generator class="native"/>
+  </id>
+    <property name="bookID" type="string" column="bookID"/>
+  <property name="bookName" type="string" column="bookName"/>
+  <property name="author" type="string" column="author"/>
+  <property name="press" type="string" column="press"/>
+  <property name="version" type="string" column="version"/>
+  <property name="count" type="integer" column="count"/>
+  <property name="bookSort" type="string" column="bookSort"/>
+  <property name="price" type="double" column="price"/>
+  
+  <set name="orders" table="tb_book_order" fetch="join" lazy="false">
+  <key column="b_o_fk"/>
+  <many-to-many class="com.chen.entity.Order" column="o_b_fk"/>
+  </set>
+  
+  <set name="shoppingCart" table="tb_book_shoppingCart"  fetch="join" lazy="false">
+  <key column="b_s_fk"/>
+  <many-to-many class="com.chen.entity.ShoppingCart" column="s_b_fk"/>
+  </set>
+  
+ </class>
+</hibernate-mapping>

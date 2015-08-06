@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="com.cissst.action" namespace="/" extends="struts-default">
+		
+		<action name="memberAction" class="com.chen.ation.MemberAction">
+		
+			<result name="loginSuccess">/index.jsp</result>		
+			<result name="loginUnSuccess">/passwordError.jsp</result>			
+			<result name="memberRegister">/success.jsp</result>			 
+			<result name="nullMember">/nullMember.jsp</result>
+				
+			<result name="error">/member/error.jsp</result>	
+			<result name="findFour">/member/findFour.jsp</result>		
+			<result name="goRegister">/member/memberRegister.jsp</result>			
+			<result name="goUpdateCustomer">/member/updateMember.jsp</result>			
+			<result name="updateCustomer">/success.jsp</result>
+			<result name="toFindPassword">/member/findOne.jsp</result>
+			<result name="findTwo">/member/findTwo.jsp</result>
+			
+			<result name="loadMemberSet">/background/member/selectMember.jsp</result>
+			<result name="detailMember">/background/member/selectContent.jsp</result>
+			
+			
+		</action>
+		
+		<action name="bookAction" class="com.chen.ation.BookAction">
+		
+			<result name="bookList">/right.jsp</result>		
+			<result name="loginUnSuccess">/error.jsp</result>			
+			<result name="addInCart">/cart_see.jsp</result>
+			<result name="HaveBook">/haveBook.jsp</result>
+			
+			
+			<result name="loadBookSet">/background/goods/goodSelect.jsp</result>
+			<result name="updateBook">/background/goods/goodsUpdate.jsp</result>
+			<result name="saveBook">/background/goods/newGoodsInsert.jsp</result>
+			<result name="updateSuccess">/background/goods/goodSuccess.jsp</result>
+			
+		</action>
+		<action name="cartAction" class="com.chen.ation.CartActioon">
+		
+			<result name="cartLogin">/cart_see.jsp</result>			
+			<result name="loginUnSuccess">/error.jsp</result>			
+			<result name="backIndex">/index.jsp</result>			
+			<result name="checkOut">/cart_checkOut.jsp</result>			
+			<result name="clearShoppingCart">/index.jsp</result>
+			
+		</action>
+		
+		<action name="orderAction" class="com.chen.ation.OrderAction">
+		
+			<result name="orderLogin">/cart_detail.jsp</result>			
+			<result name="loginUnSuccess">/error.jsp</result>			
+			<result name="addOrder">/cart_detail.jsp</result>
+			<result name="loadOrderSet">/background/order/selectOrder.jsp</result>
+			<result name="selectContent">/background/order/selectContent.jsp</result>
+		</action>
+		
+		<action name="managerAction" class="com.chen.ation.ManagerAction">
+			
+			<result name="unSuccess">/error.jsp</result>			
+			<result name="nullMManager">/nullMember.jsp</result>	
+			<result name="loginSuccess">/leftManager.jsp</result>		
+			<result name="success">/background/manager/managerSuccess.jsp</result>			
+			<result name="loadManagerSet">/background/manager/managerSelect.jsp</result>
+			<result name="updateManagerMes">/background/manager/managerUpdate.jsp</result>
+			<result name="saveManager">/background/manager/managerInsert.jsp</result>
+			<result name="updateManagerPassword">/background/manager/managerUpdatePassword.jsp</result>
+		</action>
+    </package>
+</struts>    

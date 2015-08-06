@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="myIndexPageAction" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="myintecept" class="com.cissst.utils.InterceptUtil" />
+		</interceptors>
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<action name="indexPageAction" class="indexPageAction">
+			<result name="TOLOGIN">/Index.jsp</result>
+			<result name="TORESETPWD">/password.jsp</result>
+			<result name="SUCCESS">/login_a.jsp</result>
+			<result name="UNSUCCESS">/Index.jsp</result>
+			<result name="UNKOWN">/Index.jsp</result>
+
+			<result name="JIAOWUZHUREN">/loginjiaowuzhuren.jsp</result>
+			<result name="BANZHUREN">/loginbanzhuren.jsp</result>
+			<result name="TEACHER">/loginteacher.jsp</result>
+			<result name="YIBANHONGHU">/loginyiban.jsp</result>
+			<result name="noPrivilege">/noPrivilege.jsp</result>
+			<!--错误页面:用户名或者密码错误，登录失败!-->
+<!--			<result name="backIndexByError">/giveErrorMsg.jsp</result>-->
+			<interceptor-ref name="myintecept" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+	</package>
+</struts>

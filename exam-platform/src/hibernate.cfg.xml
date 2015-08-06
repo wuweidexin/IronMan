@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/exam-platform</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="myeclipse.connection.profile">mysql</property>
+		<mapping resource="com/cissst/entity/TbAuditStatus.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbClasses.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbClassType.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbClazzStatus.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbExamPaper.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbExamPaperAnswer.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbExamPlan.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbExamScheme.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbExamSchemeDetail.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbExamSchemeProblem.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbPlanStatus.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbProblem.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbProblemAnswer.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbProblemAudit.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbProblemDifficultyLevel.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbProblemResult.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbProblemScore.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbProblemType.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbReadStatus.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbReadType.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbSchemeAudit.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbStudent.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbStudentStatus.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbStudentType.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbTactics.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbTacticsDetail.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbUser.hbm.xml" />
+		<mapping resource="com/cissst/entity/TbUserType.hbm.xml" />
+
+
+
+	</session-factory>
+
+</hibernate-configuration>

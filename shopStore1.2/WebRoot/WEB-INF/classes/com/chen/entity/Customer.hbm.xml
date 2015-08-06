@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.chen.entity.Customer" table="tb_customer">
+		<id name="id" type="integer">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="cusID" type="string" column="cusID" />
+		<property name="cusName" type="string" column="cusName" />
+		<property name="cusPassword" type="string" column="cusPassword" />
+		<property name="cusTelephone" type="string" column="cusTelephone" />
+		<property name="cusAddress" type="string" column="cusAddress" />
+		<property name="cusMail" type="string" column="cusMail" />
+		<property name="cusPostCode" type="string" column="cusPostCode" />
+		<property name="question" type="string" column="question" />
+		<property name="answer" type="string" column="answer" />
+
+		<set name="orders" cascade="all" order-by="id" lazy="false" inverse="true">
+			<key column="c_o_fk" />
+			<one-to-many class="com.chen.entity.Order" />
+		</set>
+		<many-to-one name="shoppingCart" class="com.chen.entity.ShoppingCart"
+			column="c_s_id" lazy="false" cascade="all" unique="true" />
+
+	</class>
+</hibernate-mapping>

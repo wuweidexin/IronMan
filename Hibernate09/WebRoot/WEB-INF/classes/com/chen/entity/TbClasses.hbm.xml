@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.chen.entity.Classes" table="tb_classes" catalog="chen_mysql">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<set name="set">
+			<key column="s_c_fk" />
+			<one-to-many class="com.chen.entity.TbStudent" />
+		</set>
+		<property name="claName" type="string">
+			<column name="className" length="50" />
+		</property>
+
+	</class>
+</hibernate-mapping>

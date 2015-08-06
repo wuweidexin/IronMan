@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbExamSchemeProblem" table="tb_exam_scheme_problem">
+        <id name="espId" type="java.lang.Integer">
+            <column name="esp_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbExamScheme" class="com.cissst.entity.TbExamScheme" fetch="select" lazy="false">
+            <column name="es_id" />
+        </many-to-one>
+        <many-to-one name="tbProblem" class="com.cissst.entity.TbProblem" fetch="select" lazy="false">
+            <column name="p_id" />
+        </many-to-one>
+        <property name="espDel" type="java.lang.String">
+            <column name="esp_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

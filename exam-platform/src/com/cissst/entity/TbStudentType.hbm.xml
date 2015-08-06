@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbStudentType" table="tb_student_type">
+        <id name="stId" type="java.lang.Integer">
+            <column name="st_id" />
+            <generator class="native" />
+        </id>
+        <property name="stMyselfId" type="java.lang.String">
+            <column name="st_myself_id" length="50" />
+        </property>
+        <property name="stName" type="java.lang.String">
+            <column name="st_name" length="50" />
+        </property>
+        <property name="stDel" type="java.lang.String">
+            <column name="st_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+        <set name="tbStudents" inverse="true" lazy="false">
+            <key>
+                <column name="st_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudent" />
+        </set>
+    </class>
+</hibernate-mapping>

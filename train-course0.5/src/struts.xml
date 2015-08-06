@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="GBK"></constant>
+	
+	<package name="com.chen.action" namespace="/" extends="struts-default">
+		<action name="loginAction" class="com.chen.action.LoginAction">
+			<result name="sPwdCorrect">/center.jsp</result>
+			<result name="mPwdCorrect">/center_zhanjia.jsp</result>
+			<result name="pwdError">/login.jsp</result>
+			<result name="inexistence">/login.jsp</result>
+		</action>
+		
+		<action name="stuAction" class="com.chen.action.StuAction">
+			<result name="queryListStu">/admin_student.jsp</result>
+			<result name="login">/login.jsp</result>
+			<result name="error">/errorStu.jsp</result>
+		</action>
+		
+		<action name="courseAction" class="com.chen.action.CourseAction">
+			<result name="queryCourse">/xuanke.jsp</result>
+			<result name="queryCourse1">/admin_course.jsp</result>
+			<result name="exit">/error.jsp</result>
+			<result name="toAddCourse">/addcourse.jsp</result>
+			<result name="yixuankecheng">/yixuankecheng.jsp</result>
+			<result name="goUpdateCourse">/updatecourse.jsp</result>
+		</action>
+		<action name="managerAction" class="com.chen.action.ManagerAction">
+			<result name="queryManager">/editzhuanjia.jsp</result>
+			
+		</action>
+		<action name="noticeAction" class="com.chen.action.NoticeAction">
+			<result name="queryListNotice">/gonggao_zhuanjia.jsp</result>
+		</action>
+	</package>
+
+</struts>    

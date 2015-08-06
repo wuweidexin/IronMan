@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbExamPaper" table="tb_exam_paper">
+        <id name="epId" type="java.lang.Integer">
+            <column name="ep_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbReadStatus" class="com.cissst.entity.TbReadStatus" fetch="select" lazy="false">
+            <column name="rs_id" />
+        </many-to-one>
+        <many-to-one name="tbUser" class="com.cissst.entity.TbUser" fetch="select" lazy="false">
+            <column name="u_id" />
+        </many-to-one>
+        <many-to-one name="tbExamPlan" class="com.cissst.entity.TbExamPlan" fetch="select" lazy="false">
+            <column name="plan_id" />
+        </many-to-one>
+        <property name="epTotalMark" type="java.lang.Float">
+            <column name="ep_total_mark" precision="12" scale="0" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="epDel" type="java.lang.String">
+            <column name="ep_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+        <set name="tbExamPaperAnswers" inverse="true" lazy="false">
+            <key>
+                <column name="ep_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamPaperAnswer" />
+        </set>
+    </class>
+</hibernate-mapping>

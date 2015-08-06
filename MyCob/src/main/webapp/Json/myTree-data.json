@@ -1,0 +1,17 @@
+{
+	text : '.',
+	children : [
+		{
+			text : '测试',
+			expanded : true,
+			children : [
+				{
+					text : '测试',
+					id : 'JS.main',
+					leaf : true
+				}
+			]
+		}
+	
+	]
+}

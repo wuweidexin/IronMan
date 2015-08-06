@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="myExamSchemaAction" extends="struts-default">
+		<interceptors>
+			<interceptor name="myintecept" class="com.cissst.utils.InterceptUtil" />
+		</interceptors>
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<action name="examSchemaAction" class="examSchemaAction">
+
+			<result name="examSchemeAdd">/examScheme/examSchemeAdd.jsp</result>
+			<result name="examSchemeAdd2">/examScheme/examSchemeAdd2.jsp</result>
+			<result name="examSchemeAdd2_1">/examScheme/examSchemeAdd2_1.jsp</result>
+			<result name="examSchemeAdd4">/examScheme/examSchemeAdd4.jsp</result>
+
+
+			<result name="examSchemeQuery">/examScheme/examSchemeQuery.jsp</result>
+			<result name="examSchemeQuery2">/examScheme/examSchemeQuery2.jsp</result>
+
+			<result name="examSchemeQuery3">/examScheme/examSchemeQuery3.jsp</result>
+			<result name="examSchemeQuery4">/examScheme/examSchemeQuery4.jsp</result>
+			<result name="quesLibQuery3">/examScheme/quesLibQuery3.jsp</result>
+
+
+			<result name="examSchemeAudit">/examScheme/examSchemeAudit.jsp</result>
+			<result name="examSchemeAudit2">/examScheme/examSchemeAudit2.jsp</result>
+
+			<result name="examSchemeCancel">/examScheme/examSchemeCancel.jsp</result>
+			<result name="examSchemeCancel2">/examScheme/examSchemeCancel2.jsp</result>
+
+			<result name="noPrivilege">/noPrivilege.jsp</result>
+			<!--错误页面:用户名或者密码错误，登录失败!-->
+			<!--			<result name="backIndexByError">/giveErrorMsg.jsp</result>-->
+			<interceptor-ref name="myintecept" />
+			<interceptor-ref name="defaultStack" />
+
+
+		</action>
+	</package>
+</struts>

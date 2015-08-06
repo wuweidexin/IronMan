@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbUser" table="tb_user">
+        <id name="UId" type="java.lang.Integer">
+            <column name="u_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbUserType" class="com.cissst.entity.TbUserType" fetch="select" lazy="false">
+            <column name="ut_id" />
+        </many-to-one>
+        <property name="UAccount" type="java.lang.String">
+            <column name="u_account" length="50" />
+        </property>
+        <property name="UName" type="java.lang.String">
+            <column name="u_name" length="50" />
+        </property>
+        <property name="UPwd" type="java.lang.String">
+            <column name="u_pwd" length="50" />
+        </property>
+        <property name="UGender" type="java.lang.String">
+            <column name="u_gender" length="2" />
+        </property>
+        <property name="UEmail" type="java.lang.String">
+            <column name="u_email" length="50" />
+        </property>
+        <property name="UHiretime" type="java.lang.String">
+            <column name="u_hiretime" length="50" />
+        </property>
+        <property name="ULastLoginTime" type="java.lang.String">
+            <column name="u_last_login_time" length="50" />
+        </property>
+        <property name="UDel" type="java.lang.String">
+            <column name="u_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+        <set name="tbProblems" inverse="true" lazy="false">
+            <key>
+                <column name="u_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbProblem" />
+        </set>
+        <set name="tbStudents" inverse="true" lazy="false">
+            <key>
+                <column name="u_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbStudent" />
+        </set>
+        <set name="tbClasseses" inverse="true" lazy="false">
+            <key>
+                <column name="u_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbClasses" />
+        </set>
+        <set name="tbExamPapers" inverse="true" lazy="false">
+            <key>
+                <column name="u_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamPaper" />
+        </set>
+        <set name="tbSchemeAudits" inverse="true" lazy="false">
+            <key>
+                <column name="u_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbSchemeAudit" />
+        </set>
+        <set name="tbProblemAudits" inverse="true" lazy="false">
+            <key>
+                <column name="u_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbProblemAudit" />
+        </set>
+    </class>
+</hibernate-mapping>

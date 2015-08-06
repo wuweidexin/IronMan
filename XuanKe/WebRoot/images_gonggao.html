@@ -1,0 +1,51 @@
+<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
+<%@ page import="conn.conn"%>
+<%@ page import="java.sql.*"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  
+  <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<%
+ 
+String n_id = request.getParameter("n_id");
+
+int n_id1 = Integer.parseInt(n_id);
+
+String sql = "select * from news where n_id = "+n_id1+"";
+conn cn = new conn();
+ResultSet rs = cn.query(sql);
+
+while(rs.next()){
+%>
+  <body>
+  <center>
+<br><br><font size="5" color="42870a"><b>
+浏览公告信息</b></font><br><br>
+<form name="frm"  action="add_gonggao" method="post"   onsubmit ="return users()" >
+<table border="1" bordercolor="42870a">
+<tr>
+<td><font size="2" color="42870a">公告标题:</font></td>
+<td><input type="text" value=<%=rs.getString("n_title")%> size="21" readonly="readonly"></input></td>
+</tr>
+<tr>
+<td><font size="2" color="42870a">公告名称:</font></td>
+<td><textarea  cols="45" rows="20" readonly="readonly"><%=rs.getString("n_content")%></textarea></td>
+</tr>
+<tr>
+<td><font size="2" color="42870a">添加时间:</font></td>
+<td><input  type="text" value=<%=rs.getString("n_time")%> size="21" readonly="readonly"></input></td>
+</tr>
+</table>
+<br>
+<a href="images.html" Style="height:20px; width:50px; border:solid 1px #cadcb2; font-size:12px; color:42870a;">返回</a>
+</form>
+
+</center>
+  </body>
+<%} cn.close();%>
+</html>

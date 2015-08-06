@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<!-- 引入init.properties中属性 -->
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:init.properties</value>
+		</property>
+	</bean>
+	<!-- 配置数据源，连接池使用c3p0,详细信息参见hibernate官方文档"基础配置章节"-->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" dependency-check="none">
+		<!--链接数据库所需驱动-->
+		<property name="driverClass">
+			<value>${datasource.driverClassName}</value>
+		</property>
+		<!--链接数据库的url-->
+		<property name="jdbcUrl">
+			<value>${datasource.url}</value>
+		</property>
+		<!--链接数据库用户名-->
+		<property name="user">
+			<value>${datasource.username}</value>
+		</property>
+		<!--链接数据库密码-->
+		<property name="password">
+			<value>${datasource.password}</value>
+		</property>
+		<!--当连接池中的链接耗尽时c3p0一次同时获得的链接是,默认为 3-->
+		<property name="acquireIncrement">
+			<value>${c3p0.acquireIncrement}</value>
+		</property>
+		<!--初始化时一次获得3个连接池取值在minPoolSize和maxPoolSize之间,默认为 3-->
+		<property name="initialPoolSize">
+			<value>${c3p0.initialPoolSize}</value>
+		</property>
+		<!--连接池中保留的最小连接数,默认为 15-->
+		<property name="minPoolSize">
+			<value>${c3p0.minPoolSize}</value>
+		</property>
+		<!--连接池中保留的最大连接数,默认为 15-->
+		<property name="maxPoolSize">
+			<value>${c3p0.maxPoolSize}</value>
+		</property>
+		<!--最大空闲时间,60秒未使用则连接池被丢弃，若为0则永远不丢弃,默认为 0-->
+		<property name="maxIdleTime">
+			<value>${c3p0.maxIdleTime}</value>
+		</property>
+		<!--每秒检查连接池中的空闲链接数，默认为 0-->
+		<property name="idleConnectionTestPeriod">
+			<value>${c3p0.idleConnectionTestPeriod}</value>
+		</property>
+		<!--
+			JDBC的标准参数，用于控制数据源内加载的PreparedStatements的数量
+			但由于缓存中的Statemnts属于单个的connection而不是整个的连接池,所以设置
+			这个参数需要考虑多方面的因素，如果maxStatements为0怎连接池被关闭，默认为 0
+		-->
+		<property name="maxStatements">
+			<value>${c3p0.maxStatements}</value>
+		</property>
+		<!--
+			c3p0为异步操作，缓存的JDBC通过帮助进程来完成,扩展这些操作有利于提高系统功能， 通过线程实行多个操作同时被执行
+		-->
+		<property name="numHelperThreads">
+			<value>${c3p0.numHelperThreads}</value>
+		</property>
+	</bean>
+
+	<!-- 配置Hibernate中的SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 引入数据源 -->
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<!-- 配置Hibernate对应的映射资源 -->
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/cissst/entity/</value>
+			</list>
+		</property>
+		<!-- 配置Hibernate的属性，包括断言(方言)，show_sql等 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.jdbc.fetch_size">
+					${hibernate.jdbc.fetch_size}
+				</prop>
+				<prop key="hibernate.jdbc.batch_size">
+					${hibernate.jdbc.batch_size}
+				</prop>
+				<prop key="hibernate.connection.release_mode">
+					${hibernate.connection.release_mode}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.format_sql">
+					${hibernate.format_sql}
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<!--事务管理	
+		定义了一些用来让应用服务器管理事务的方法-->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" />
+			<tx:method name="find*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!--
+		切面和切点的配置，有关信息参见spring的官方文档(2.3.面向切面编程(AOP)章节和以前发给同学们的spring五种配置方式word文档)
+	-->
+	<aop:config>
+		<aop:pointcut id="allManagerMethod" expression="execution(* com.cissst.iDao.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" />
+	</aop:config>
+
+	<!--hibernate操作数据库的模板类-->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 对daoImp的配置-->
+	<bean id="indexPageDaoImp" class="com.cissst.iDao.IndexPageDaoImp"
+		parent="hibernateTemplate" />
+	<bean id="problemManagerDaoImp" class="com.cissst.iDao.ProblemManagerDaoImp"
+		parent="hibernateTemplate" />
+	<bean id="examSchemaDaoImp" class="com.cissst.iDao.ExamSchemaDaoImp"
+		parent="hibernateTemplate" />
+	<bean id="examPlanDaoImp" class="com.cissst.iDao.ExamPlanDaoImp"
+		parent="hibernateTemplate" />
+	<bean id="scoreManagerDaoImp" class="com.cissst.iDao.ScoreManagerDaoImp"
+		parent="hibernateTemplate" />
+	<bean id="classesManagerDaoImp" class="com.cissst.iDao.ClassesManagerDaoImp"
+		parent="hibernateTemplate" />
+	<bean id="systemSettingDaoImp" class="com.cissst.iDao.SystemSettingDaoImp"
+		parent="hibernateTemplate" />
+
+	<!--  对serviceImp的配置-->
+	<bean id="indexPageServiceImp" class="com.cissst.iService.IndexPageServiceImp">
+		<property name="indexPageDao" ref="indexPageDaoImp" />
+	</bean>
+	<bean id="problemManagerServiceImp" class="com.cissst.iService.ProblemManagerServiceImp">
+		<property name="problemManagerDao" ref="problemManagerDaoImp" />
+	</bean>
+	<bean id="examSchemaServiceImp" class="com.cissst.iService.ExamSchemaServiceImp">
+		<property name="examSchemaDao" ref="examSchemaDaoImp" />
+	</bean>
+	<bean id="examPlanServiceImp" class="com.cissst.iService.ExamPlanServiceImp">
+		<property name="examPlanDao" ref="examPlanDaoImp" />
+	</bean>
+	<bean id="scoreManagerServiceImp" class="com.cissst.iService.ScoreManagerServiceImp">
+		<property name="scoreManagerDao" ref="scoreManagerDaoImp" />
+	</bean>
+	<bean id="classesManagerServiceImp" class="com.cissst.iService.ClassesManagerServiceImp">
+		<property name="classesManagerDao" ref="classesManagerDaoImp" />
+	</bean>
+	<bean id="systemSettingServiceImp" class="com.cissst.iService.SystemSettingServiceImp">
+		<property name="systemSettingDao" ref="systemSettingDaoImp" />
+	</bean>
+
+
+	<!--配置实体类	-->
+	<bean id="paperAnswer" class="com.cissst.entity.TbExamPaperAnswer" />
+	<bean id="tbProblem" class="com.cissst.entity.TbProblem" />
+	<bean id="tbAuditStatus" class="com.cissst.entity.TbAuditStatus" />
+	<bean id="tbProblemType" class="com.cissst.entity.TbProblemType" />
+	<bean id="tbProblemScore" class="com.cissst.entity.TbProblemScore" />
+	<bean id="proDiffLevel" class="com.cissst.entity.TbProblemDifficultyLevel" />
+	<bean id="tbProblemResult" class="com.cissst.entity.TbProblemResult" />
+	<bean id="tbUser" class="com.cissst.entity.TbUser" />
+	<bean id="userType" class="com.cissst.entity.TbUserType" />
+	<bean id="classType" class="com.cissst.entity.TbClassType" />
+	<bean id="tbProblemAudit" class="com.cissst.entity.TbProblemAudit" />
+	<bean id="studentType" class="com.cissst.entity.TbStudentType"></bean>
+	<bean id="tbExamPaper" class="com.cissst.entity.TbExamPaper" />
+	<bean id="examPlan" class="com.cissst.entity.TbExamPlan" />
+	<bean id="tbClasses" class="com.cissst.entity.TbClasses" />
+	<bean id="tbClassType" class="com.cissst.entity.TbClassType" />
+	<bean id="tbStudentStatus" class="com.cissst.entity.TbStudentStatus" />
+	<bean id="tbClazzStatus" class="com.cissst.entity.TbClazzStatus" />
+	<bean id="tbStudent" class="com.cissst.entity.TbStudent" />
+	<bean id="hashMap" class="java.util.HashMap" />
+
+	<bean id="numberUtil" class="com.cissst.utils.NumberUtil">
+		<property name="problemManagerDao" ref="problemManagerDaoImp" />
+		<property name="classesManagerDao" ref="classesManagerDaoImp" />
+		<property name="systemSettingDao" ref="systemSettingDaoImp" />
+		<property name="examPlanDao" ref="examPlanDaoImp" />
+		<property name="examSchemaDao" ref="examSchemaDaoImp" />
+	</bean>
+
+
+
+
+	<!-- 对Action的配置-->
+	<bean id="indexPageAction" class="com.cissst.action.IndexPageAction">
+		<property name="IPService" ref="indexPageServiceImp" />
+		<property name="sessionId" ref="hashMap" />
+	</bean>
+	<bean id="problemManagerAction" class="com.cissst.action.ProblemManagerAction">
+		<property name="PMService" ref="problemManagerServiceImp" />
+		<property name="tbProblem" ref="tbProblem" />
+		<property name="tbAuditStatus" ref="tbAuditStatus" />
+		<property name="tbProblemType" ref="tbProblemType" />
+		<property name="tbProblemScore" ref="tbProblemScore" />
+		<property name="proDiffLevel" ref="proDiffLevel" />
+		<property name="tbProblemResult" ref="tbProblemResult" />
+		<property name="tbUser" ref="tbUser" />
+		<property name="tbProblemAudit" ref="tbProblemAudit" />
+		<property name="numberUtil" ref="numberUtil" />
+		<property name="indexPageAction" ref="indexPageAction" />
+
+	</bean>
+	<bean id="examSchemaAction" class="com.cissst.action.ExamSchemaAction">
+		<property name="ESService" ref="examSchemaServiceImp" />
+		<property name="numberUtil" ref="numberUtil" />
+	</bean>
+	<bean id="examPlanAction" class="com.cissst.action.ExamPlanAction">
+		<property name="EPService" ref="examPlanServiceImp" />
+		<property name="numberUtil" ref="numberUtil" />
+	</bean>
+	<bean id="scoreManagerAction" class="com.cissst.action.ScoreManagerAction">
+		<property name="SMService" ref="scoreManagerServiceImp" />
+		<property name="tbExamPaper" ref="tbExamPaper" />
+		<property name="examPlan" ref="examPlan" />
+		<property name="paperAnswer" ref="paperAnswer" />
+	</bean>
+	<bean id="classMangerAction" class="com.cissst.action.ClassesManagerAction">
+		<property name="CMService" ref="classesManagerServiceImp" />
+		<property name="tbUSer" ref="tbUser" />
+		<property name="tbClasses" ref="tbClasses" />
+		<property name="tbClassType" ref="tbClassType" />
+		<property name="classNo" ref="numberUtil" />
+		<property name="tbClazzStatus" ref="tbClazzStatus" />
+		<property name="tbStudentStatus" ref="tbStudentStatus" />
+		<property name="tbStudent" ref="tbStudent" />
+	</bean>
+	<bean id="systemsettingAction" class="com.cissst.action.SystemSettingAction">
+		<property name="SSService" ref="systemSettingServiceImp" />
+		<property name="problemType" ref="tbProblemType" />
+		<property name="problemScore" ref="tbProblemScore" />
+		<property name="problemDifficultyLevel" ref="proDiffLevel" />
+
+		<property name="classType" ref="classType" />
+		<property name="studentType" ref="studentType" />
+		<property name="user" ref="tbUser" />
+		<property name="userType" ref="userType" />
+		<property name="numberUtil" ref="numberUtil" />
+
+	</bean>
+	<bean id="iterceptUtil" class="com.cissst.utils.InterceptUtil">
+		<property name="indexPageAction" ref="indexPageAction" />
+	</bean>
+
+</beans>

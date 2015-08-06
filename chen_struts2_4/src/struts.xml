@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="com.chen.Action" extends="struts-default" namespace="/">
+		<action name="baseAction" class="com.chen.action.BaseAction">
+			<result name="SUCCESS">/view.jsp</result>
+			<result name="LOGINSUCCESS">/view.jsp</result>
+			<result name="UNSUCCESS">/unsuccess.jsp</result>
+		</action>
+	</package>
+</struts>    

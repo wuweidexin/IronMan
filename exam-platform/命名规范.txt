@@ -1,0 +1,17 @@
+service中的定义方式
+find***();
+get***();
+
+
+serviceimp中的定义方式
+与上面的一样
+
+action中的定义方式
+
+方法参照页面的命名或者定义与下面类似的方法
+比如在用户设计模块
+返回值的string应该和方法名一样
+private String userSetting()
+return "userSetting";
+private String qlTypeSetting()
+return "qlTypeSetting";

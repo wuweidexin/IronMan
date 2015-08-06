@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>无标题文档</title>
+		<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size: 12px;
+	color: #1F4A65;
+}
+
+.STYLE1 {
+	font-size: 12px
+}
+
+.STYLE4 {
+	font-size: 12px;
+	color: #1F4A65;
+	font-weight: bold;
+}
+
+a:link {
+	font-size: 12px;
+	color: #06482a;
+	text-decoration: none;
+}
+
+a:visited {
+	font-size: 12px;
+	color: #06482a;
+	text-decoration: none;
+}
+
+a:hover {
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: underline;
+}
+
+a:active {
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: none;
+}
+
+.STYLE7 {
+	font-size: 12
+}
+-->
+</style>
+
+	</head>
+
+	<body onload="selectyes()">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里需要注意，首先得判断是否有是选课时间，如果是则显示下面的内容，如果不是，则显示不是选课时间
+
+
+
+		<table width="80%" border="0" align="center" cellpadding="0"
+			cellspacing="0">
+			<tr>
+				<td height="30">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="15" height="30">
+								<img src="images/tab_03.gif" width="15" height="30" />
+							</td>
+							<td width="1101" background="images/tab_05.gif">
+								<img src="images/311.gif" width="16" height="16" />
+								<span class="STYLE4">选课信息管理</span>
+							</td>
+							<td width="281" background="images/tab_05.gif">
+								<table border="0" align="right" cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="STYLE1">
+											<div align="center"></div>
+										</td>
+										<td class="STYLE1">
+											<div align="center"></div>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td width="14">
+								<img src="images/tab_07.gif" width="14" height="30" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="9" background="images/tab_12.gif">
+								&nbsp;
+							</td>
+							<td bgcolor="#f3ffe3">
+								<table width="99%" border="0" align="center" cellpadding="0"
+									cellspacing="1" bgcolor="#c0de98" onmouseover=changeto();
+									onmouseout=changeback();>
+									<tr>
+										<td width="6%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2 STYLE1">
+												序号
+											</div>
+										</td>
+										<td width="8%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2 STYLE1">
+												课程号
+											</div>
+										</td>
+										<td width="8%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2 STYLE1">
+												课程名
+											</div>
+										</td>
+										<td width="6%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2 STYLE1">
+												课时
+											</div>
+										</td>
+										<td width="8%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2 STYLE1">
+												任课教师编号
+											</div>
+										</td>
+										<td width="8%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2 STYLE1">
+												任课教师姓名
+											</div>
+										</td>
+										<td width="6%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2 STYLE1">
+												选课人数
+											</div>
+										</td>
+										<td width="8%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2 STYLE1">
+												教室安排
+											</div>
+										</td>
+										<td width="13%" height="18" background="images/tab_14.gif"
+											class="STYLE1">
+											<div align="center" class="STYLE2">
+												操作
+											</div>
+										</td>
+									</tr>
+
+
+									<tr id="haha">
+										<td height="18" bgcolor="#FFFFFF">
+											<div align="center" class="STYLE1">
+												<%=(cpage-1)*10+s++ %>
+										</td>
+										<td height="18" bgcolor="#FFFFFF" class="STYLE2">
+											<div align="center" class="STYLE2 STYLE1">
+												<input type="hidden" name="code" value="$$$$$"></input>
+												<%=rst.getString("c_code") %>
+											</div>
+										</td>
+										<td height="18" bgcolor="#FFFFFF" class="STYLE2">
+											<div align="center" class="STYLE2 STYLE1">
+												<%=rst.getString("c_name") %>
+											</div>
+										</td>
+										<td height="18" bgcolor="#FFFFFF" class="STYLE2">
+											<div align="center" class="STYLE2 STYLE1">
+												<%=rst.getString("c_keshi") %>
+											</div>
+										</td>
+										<td height="18" bgcolor="#FFFFFF" class="STYLE2">
+											<div align="center" class="STYLE2 STYLE1">
+												<%=rst.getString("c_tid") %>
+											</div>
+										</td>
+										<td height="18" bgcolor="#FFFFFF" class="STYLE2">
+											<div align="center" class="STYLE2 STYLE1">
+												<%=rst.getString("c_tname") %>
+											</div>
+										</td>
+										<td height="18" bgcolor="#FFFFFF" class="STYLE2">
+											<div align="center" class="STYLE2 STYLE1">
+												<%=rst.getString("c_renshu") %>
+											</div>
+										</td>
+										<td height="18" bgcolor="#FFFFFF" class="STYLE2">
+											<div align="center" class="STYLE2 STYLE1">
+												<%=rst.getString("c_address") %>
+											</div>
+										</td>
+										<td height="18" bgcolor="#FFFFFF">
+											<div align="center">
+												<span class="STYLE1"></span>
+												<input id="zhuangtai" value="删除" name="xuanzhe"
+													type="button" />
+												<span class="STYLE1"></span>
+											</div>
+										</td>
+									</tr>
+
+
+								</table>
+							</td>
+							<td width="9" background="images/tab_16.gif">
+								&nbsp;
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td height="29">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="15" height="29">
+								<img src="images/tab_20.gif" width="15" height="29" />
+							</td>
+							<td background="images/tab_21.gif">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td width="25%" height="29" nowrap="nowrap">
+											<span class="STYLE1"><input type="hidden"
+													id="s_username" name=s_username value="$$$$$$"></input>共<%=
+												allCol %>条纪录，当前第<%=cpage%>/<%=allpage%>页，共<%= allpage
+												%>记录，每页10条纪录</span>
+										</td>
+										<td width="75%" valign="top" class="STYLE1">
+											<div align="right">
+												<table width="352" height="20" border="0" cellpadding="0"
+													cellspacing="0">
+													<tr>
+														<td width="62" height="22" valign="middle">
+															<div align="right">
+																<a href="kexuankecheng.jsp?pages=1"><img
+																		src="images/first.gif" width="37" height="15"
+																		border="0" /> </a>
+															</div>
+														</td>
+														<td width="50" height="22" valign="middle">
+															<div align="right">
+																<a href="kexuankecheng.html"><img
+																		src="images/back.gif" width="43" height="15"
+																		border="0" /> </a>
+															</div>
+														</td>
+														<td width="54" height="22" valign="middle">
+															<div align="right">
+																<a href="kexuankecheng.html"><img
+																		src="images/next.gif" width="43" height="15"
+																		border="0" /> </a>
+															</div>
+														</td>
+														<td width="49" height="22" valign="middle">
+															<div align="right">
+																<a href="kexuankecheng.html"><img
+																		src="images/last.gif" width="37" height="15"
+																		border="0" /> </a>
+															</div>
+														</td>
+														<td width="59" height="22" valign="middle">
+															<div align="right"></div>
+														</td>
+														<td width="25" height="22" valign="middle">
+															<span class="STYLE7"> </span>
+														</td>
+														<td width="23" height="22" valign="middle"></td>
+														<td width="30" height="22" valign="middle"></td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td width="14">
+								<img src="images/tab_22.gif" width="14" height="29" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+		</table>
+	</body>
+	<script type="text/javascript">
+var temp;
+var XMLHttpReq = false;
+	//创建XMLHttpRequest对象       
+function createXMLHttpRequest() {
+	if(window.XMLHttpRequest) { //Mozilla 浏览器
+		XMLHttpReq = new XMLHttpRequest();
+	}
+	else if (window.ActiveXObject) { // IE浏览器
+		try {
+			XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				XMLHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
+	}
+}
+//发送请求函数
+function sendRequest(url) {
+	createXMLHttpRequest();
+	XMLHttpReq.open("post", url, true);
+	XMLHttpReq.onreadystatechange = processResponse;//指定响应函数
+	XMLHttpReq.send(null);  // 发送请求
+	
+}
+// 处理返回信息函数
+function processResponse() {
+	if (XMLHttpReq.readyState == 4) { // 判断对象状态
+    	if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
+    	
+        	var message=XMLHttpReq.responseXML.getElementsByTagName("message")[0].firstChild.data;
+
+        	if(message=="0"){
+            	alert("选课成功");
+            }else if(message=="2"){
+            	alert("取消成功");
+            }else{
+            	alert("请求失败");
+            }
+         //document.getElementById("message").innerHTML=message ;
+        } else { //页面不正常
+            window.alert("您所请求的页面有异常。");
+        }
+    }
+}
+//课程编号
+function selectyes(){
+	var obj = document.getElementsByName("xuanzhe");
+	var s_username =document.getElementById("s_username").value;
+    for(var i=0;i<obj.length;i++){
+    	obj[i].onclick=function(){
+            var c_code=this.value;
+            if(this.checked == true){
+            	sendRequest("addxuanke?c_code="+c_code+""+"&s_username="+s_username);
+                }else{
+                sendRequest("deletexuanke?c_code="+c_code+"");
+            }
+         }
+       }
+
+    var yiboj = document.getElementsByName("yixuan");
+    for(var i=0;i<yiboj.length;i++){
+    	for(var j=0;j<obj.length;j++){
+        	if(yiboj[i].value==obj[j].value){
+        		obj[j].checked=true;
+        	}else{
+        	}
+    	}
+       }
+    
+	}
+
+</script>

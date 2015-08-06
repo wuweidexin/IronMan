@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbExamScheme" table="tb_exam_scheme">
+        <id name="esId" type="java.lang.Integer">
+            <column name="es_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbAuditStatus" class="com.cissst.entity.TbAuditStatus" fetch="select" lazy="false">
+            <column name="as_id" />
+        </many-to-one>
+        <property name="esMyselfId" type="java.lang.String">
+            <column name="es_myself_id" length="100" />
+        </property>
+        <property name="esName" type="java.lang.String">
+            <column name="es_name" length="100" />
+        </property>
+        <property name="esDescribe" type="java.lang.String">
+            <column name="es_describe" length="1000" />
+        </property>
+        <property name="esAddUser" type="java.lang.String">
+            <column name="es_add_user" length="100" />
+        </property>
+        <property name="esAddTime" type="java.lang.String">
+            <column name="es_add_time" length="100" />
+        </property>
+        <property name="esDel" type="java.lang.String">
+            <column name="es_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+        <set name="tbExamPlans" inverse="true" lazy="false">
+            <key>
+                <column name="es_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamPlan" />
+        </set>
+        <set name="tbExamSchemeProblems" inverse="true" lazy="false">
+            <key>
+                <column name="es_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamSchemeProblem" />
+        </set>
+        <set name="tbSchemeAudits" inverse="true" lazy="false">
+            <key>
+                <column name="es_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbSchemeAudit" />
+        </set>
+        <set name="tbExamSchemeDetails" inverse="true" lazy="false">
+            <key>
+                <column name="es_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamSchemeDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

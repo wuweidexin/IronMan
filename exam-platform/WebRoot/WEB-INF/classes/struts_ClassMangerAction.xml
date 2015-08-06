@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="myclasses" extends="struts-default">
+		<interceptors>
+			<interceptor name="myintecept" class="com.cissst.utils.InterceptUtil" />
+		</interceptors>
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<action name="classMangerAction" class="classMangerAction">
+			<result name="classAdd">/class/classAdd.jsp</result>
+			<result name="studentAdd">/class/studentAdd.jsp</result>
+			<result name="studentAdd1">/class/studentAdd1.jsp</result>
+			<result name="studentQuery">/class/studentQuery.jsp</result>
+			<result name="studentQuery2">/class/studentQuery2.jsp</result>
+			<result name="classQuery">/class/classQuery.jsp</result>
+			<result name="classQuery2">/class/classQuery2.jsp</result>
+			<result name="classQuery3">/class/classQuery3.jsp</result>
+			<result name="noPrivilege">/noPrivilege.jsp</result>
+			<!--错误页面:用户名或者密码错误，登录失败!-->
+			<!--			<result name="backIndexByError">/giveErrorMsg.jsp</result>-->
+			<interceptor-ref name="myintecept" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbReadType" table="tb_read_type">
+        <id name="rtId" type="java.lang.Integer">
+            <column name="rt_id" />
+            <generator class="native" />
+        </id>
+        <property name="rtName" type="java.lang.String">
+            <column name="rt_name" length="50" />
+        </property>
+        <property name="rtDel" type="java.lang.String">
+            <column name="rt_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+        <set name="tbExamPlans" inverse="true" lazy="false">
+            <key>
+                <column name="rt_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamPlan" />
+        </set>
+        <set name="tbTacticses" inverse="true" lazy="false">
+            <key>
+                <column name="rt_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbTactics" />
+        </set>
+    </class>
+</hibernate-mapping>

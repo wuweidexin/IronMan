@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbUserType" table="tb_user_type">
+        <id name="utId" type="java.lang.Integer">
+            <column name="ut_id" />
+            <generator class="native" />
+        </id>
+        <property name="utName" type="java.lang.String">
+            <column name="ut_name" length="100" />
+        </property>
+        <property name="utDel" type="java.lang.String">
+            <column name="ut_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+        <set name="tbUsers" inverse="true" lazy="false">
+            <key>
+                <column name="ut_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbUser" />
+        </set>
+    </class>
+</hibernate-mapping>

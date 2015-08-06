@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.cissst.entity.TbTactics" table="tb_tactics">
+        <id name="TId" type="java.lang.Integer">
+            <column name="t_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="tbProblemType" class="com.cissst.entity.TbProblemType" fetch="select" lazy="false">
+            <column name="pt_id" />
+        </many-to-one>
+        <many-to-one name="tbProblemDifficultyLevel" class="com.cissst.entity.TbProblemDifficultyLevel" fetch="select" lazy="false">
+            <column name="pdl_id" />
+        </many-to-one>
+        <many-to-one name="tbReadType" class="com.cissst.entity.TbReadType" fetch="select" lazy="false">
+            <column name="rt_id" />
+        </many-to-one>
+        <many-to-one name="tbProblemScore" class="com.cissst.entity.TbProblemScore" fetch="select" lazy="false">
+            <column name="ps_id" />
+        </many-to-one>
+        <property name="TGetTitleMethod" type="java.lang.String">
+            <column name="t_get_title_method" length="2" />
+        </property>
+        <property name="TEveryMark" type="java.lang.Integer">
+            <column name="t_every_mark" />
+        </property>
+        <property name="TProblemNum" type="java.lang.String">
+            <column name="t_problem_num" length="4" />
+        </property>
+        <property name="TDel" type="java.lang.String">
+            <column name="t_del" length="2" />
+        </property>
+        <property name="col1" type="java.lang.String">
+            <column name="col1" length="50" />
+        </property>
+        <property name="col2" type="java.lang.String">
+            <column name="col2" length="50" />
+        </property>
+        <property name="col3" type="java.lang.String">
+            <column name="col3" length="50" />
+        </property>
+        <set name="tbExamSchemeDetails" inverse="true" lazy="false">
+            <key>
+                <column name="t_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbExamSchemeDetail" />
+        </set>
+        <set name="tbTacticsDetails" inverse="true" lazy="false">
+            <key>
+                <column name="t_id" />
+            </key>
+            <one-to-many class="com.cissst.entity.TbTacticsDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

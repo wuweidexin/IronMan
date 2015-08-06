@@ -1,0 +1,291 @@
+<%@page contentType="text/html;charset=gb2312"%>
+<%@ page import="conn.conn"%>
+<%@ page import="java.sql.*"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size: 12px;
+	color: #1F4A65;
+}
+.STYLE1 {font-size: 12px}
+.STYLE4 {
+	font-size: 12px;
+	color: #1F4A65;
+	font-weight: bold;
+}
+
+a:link {
+	font-size: 12px;
+	color: #06482a;
+	text-decoration: none;
+
+}
+a:visited {
+	font-size: 12px;
+	color: #06482a;
+	text-decoration: none;
+}
+a:hover {
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: underline;
+}
+a:active {
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: none;
+}
+.STYLE7 {font-size: 12}
+
+-->
+</style>
+
+<script>
+var  highlightcolor='#eafcd5';
+//此处clickcolor只能用win系统颜色代码才能成功,如果用#xxxxxx的代码就不行,还没搞清楚为什么:(
+var  clickcolor='#51b2f6';
+function  changeto(){
+source=event.srcElement;
+if  (source.tagName=="TR"||source.tagName=="TABLE")
+return;
+while(source.tagName!="TD")
+source=source.parentElement;
+source=source.parentElement;
+cs  =  source.children;
+//alert(cs.length);
+if  (cs[1].style.backgroundColor!=highlightcolor&&source.id!="nc"&&cs[1].style.backgroundColor!=clickcolor)
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor=highlightcolor;
+}
+}
+
+function  changeback(){
+if  (event.fromElement.contains(event.toElement)||source.contains(event.toElement)||source.id=="nc")
+return
+if  (event.toElement!=source&&cs[1].style.backgroundColor!=clickcolor)
+//source.style.backgroundColor=originalcolor
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor="";
+}
+}
+
+function  clickto(){
+source=event.srcElement;
+if  (source.tagName=="TR"||source.tagName=="TABLE")
+return;
+while(source.tagName!="TD")
+source=source.parentElement;
+source=source.parentElement;
+cs  =  source.children;
+//alert(cs.length);
+if  (cs[1].style.backgroundColor!=clickcolor&&source.id!="nc")
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor=clickcolor;
+}
+else
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor="";
+}
+}
+</script>
+</head>
+
+<body>
+
+<br><br><font size="5" color="42870a"><b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+公告信息管理</b></font><br><br>
+
+<%
+  request.setCharacterEncoding("gb2312");
+  String n_title=request.getParameter("n_title"); 
+  String n_content=request.getParameter("n_content"); 
+  String n_time=request.getParameter("n_time"); 
+
+  String sql1="select count(*) as id from news where ";
+  if( n_title==""||n_title==null||n_title=="null"||n_title=="" ||n_title==(null)){
+   sql1=sql1+" n_title like '%%'";
+  }else{
+  sql1=sql1+" n_title like '%"+n_title+"%'";
+  }if( n_content==""||n_content==null||n_content=="null"||n_content==""||n_content==(null)){
+   sql1=sql1+"";
+  }else{
+  sql1=sql1+" and n_content like '%"+n_content+"%'";
+  }if( n_time==""||n_time==null||n_time=="null"||n_time==""||n_time==(null)){
+   sql1=sql1+"";
+  }else{
+  sql1=sql1+" and n_time like '%"+n_time+"%'";
+  }
+  System.out.println("%%%%%%%%%%%%%%%"+sql1);
+    conn nn=new conn();
+    String pagesql,sql; 
+	ResultSet pagers,rst; 
+	int i; 
+	int ipage=10;              //分页单位 
+	int allpage;               //总页数 
+	int pages;               //接受的页码变量 
+	int cpage=1;               //当前页 
+	int allCol=0;             //总记录数
+	int beginpos=0;           //每页开始位置
+	int endpos=0;             //每页的结束位置
+	pagers = nn.query(sql1);
+	if(pagers.next())
+	{  
+	allCol = pagers.getInt("id");   //获得总记录数 
+	} 
+    allpage = (allCol+ipage-1)/ipage; //求出总页面数
+	if (request.getParameter("pages")==null) //判断参数pages是否为空 
+	{ 
+	pages=1; 
+	beginpos=0;
+	endpos=ipage;
+	}
+	else
+	{ 
+	pages = new Integer(request.getParameter("pages")).intValue(); 
+	} 	
+	//判断当前页 
+	if(pages > allpage || pages <1)
+	{ 
+		cpage = 1;                       //-默认当前要显示的页码
+		beginpos=0;                      //-=默认记录开始的位置为0
+		endpos=ipage;                    //--默认结束位置为第一页的结尾
+	}
+	else 
+	{ 
+		cpage = pages;               //--当前要显示的页码
+		beginpos=pages*ipage-ipage; //--得到记录开始的位置
+		endpos=pages*ipage;         //--得到记录结束的位置
+	} 
+  String sql2=" select * from news  where ";
+   if( n_title==""||n_title==null||n_title=="null"||n_title=="" ||n_title==(null)){
+   sql2=sql2+" n_title like '%%'";
+  }else{
+  sql2=sql2+" n_title like '%"+n_title+"%'";
+  }if( n_content==""||n_content==null||n_content=="null"||n_content==""||n_content==(null)){
+   sql2=sql2+"";
+  }else{
+  sql2=sql2+" and n_content like '%"+n_content+"%'";
+  }if( n_time==""||n_time==null||n_time=="null"||n_time==""||n_time==(null)){
+   sql2=sql2+"";
+  }else{
+  sql2=sql2+" and n_time like '%"+n_time+"%'";
+  }
+  System.out.println("&&&&&&&&&&&&"+sql2);
+	rst=nn.query(sql2);     //--得到要分页的结果集
+	
+	for(i=0;i<beginpos;i++)        
+	{
+		rst.next();                    //--把结果集的记录数移到要显示的页的记录的开始位置
+	}		    
+	int qqqq=1;
+
+	%>
+<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="15" height="30"><img src="images/tab_03.gif" width="15" height="30" /></td>
+        <td width="1101" background="images/tab_05.gif"><img src="images/311.gif" width="16" height="16" /> <span class="STYLE4">公告信息管理</span></td>
+        <td width="281" background="images/tab_05.gif"><table border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+                    <td class="STYLE1"><div align="center"><img src="images/001.gif" width="14" height="14" /></div></td>
+                    <td class="STYLE1"><div align="center"><a href="addgonggao.html">新增</a></div></td>
+                  </tr>
+        </table></td>
+        <td width="14"><img src="images/tab_07.gif" width="14" height="30" /></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="9" background="images/tab_12.gif">&nbsp;</td>
+        <td bgcolor="#f3ffe3"><table width="99%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#c0de98" onmouseover="changeto()"  onmouseout="changeback()">
+          <tr>
+            <td width="6%" height="18" background="images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">序号</div></td>
+            <td width="12%" height="18" background="images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">公告标题</div></td>
+            <td width="20%" height="18" background="images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">公告内容</div></td>
+            <td width="6%" height="18" background="images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2 STYLE1">添加时间</div></td>
+            <td width="8%" height="18" background="images/tab_14.gif" class="STYLE1"><div align="center" class="STYLE2">操作</div></td>
+          </tr>
+     
+          <tr>
+        <form action="gonggao_zhuanjia.jsp" method="post">
+        <td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1">*</td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1"><input type=text name="n_title" size="15"></input></div></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1"><input type=text name="n_content" size="15"></input></div></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1"><input type=text name="n_time" size="15"></input></div></td>
+        <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"><input type="submit" value="查询" style="height:20px; width:40px; border:solid 1px #99cccc; font-size:12px; color:42870a;"></input></div></td>
+     </form> </tr>
+                                 <% int s=1;
+	int ii=pages*ipage-ipage;
+	for(int j=beginpos;j<endpos;j++)  //---从开始位置读取记录一直到结束位置
+		{
+		   if(rst.next())
+			{
+  	ii++;     
+%>
+	                               <tr>
+            <td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><%=(cpage-1)*10+s++ %></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1"><%=rst.getString("n_title") %></div></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1"><a href=xiangxi_gonggao.jsp?n_id=<%=rst.getString("n_id") %>   ><%=rst.getString("n_content").substring(0,14) %></a></div></td>
+            <td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1"><%=rst.getString("n_time") %></div></td>
+            <td height="18" bgcolor="#FFFFFF"><div align="center"><span class="STYLE1"></span><a href=delete_gonggao?n_id=<%=rst.getString("n_id") %>  onclick="return (confirm('你确定要删除么？'))"  >删除</a><span class="STYLE1"></span></div></td>
+          </tr>
+	                               
+	                                       <%            
+   }
+ else break;   
+}
+nn.close();
+%>
+        </table></td>
+        <td width="9" background="images/tab_16.gif">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="29"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="15" height="29"><img src="images/tab_20.gif" width="15" height="29" /></td>
+        <td background="images/tab_21.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="25%" height="29" nowrap="nowrap"><span class="STYLE1">共<%= allCol %>条纪录，当前第<%=cpage%>/<%=allpage%>页，共<%= allpage %>记录，每页10条纪录</span></td>
+            <td width="75%" valign="top" class="STYLE1"><div align="right">
+              <table width="352" height="20" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="62" height="22" valign="middle"><div align="right"><a href="gonggao_zhuanjia.jsp?pages=1"><img src="images/first.gif" width="37" height="15" border="0" /></a></div></td>
+                  <td width="50" height="22" valign="middle"><div align="right"><a href="gonggao_zhuanjia.jsp?pages=<%= cpage-1 %>"><img src="images/back.gif" width="43" height="15" border="0"/></a></div></td>
+                  <td width="54" height="22" valign="middle"><div align="right"><a href="gonggao_zhuanjia.jsp?pages=<%= cpage+1 %>"><img src="images/next.gif" width="43" height="15" border="0" /></a></div></td>
+                  <td width="49" height="22" valign="middle"><div align="right"><a href="gonggao_zhuanjia.jsp?pages=<%=allpage%>"><img src="images/last.gif" width="37" height="15"  border="0"/></a></div></td>
+                  <td width="59" height="22" valign="middle"><div align="right"></div></td>
+                  <td width="25" height="22" valign="middle"><span class="STYLE7">
+                    
+                  </span></td>
+                  <td width="23" height="22" valign="middle"></td>
+                  <td width="30" height="22" valign="middle"></td>
+                </tr>
+              </table>
+            </div></td>
+          </tr>
+        </table></td>
+        <td width="14"><img src="images/tab_22.gif" width="14" height="29" /></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+
