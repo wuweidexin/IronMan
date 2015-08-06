@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //@RequestMapping(value="/mvc") 如果这里加上这个那么请求的url中药加上这个
 public class BaseController {
 	
-	@RequestMapping(value="/",method=RequestMethod.POST,
+	@RequestMapping(value="/login",method=RequestMethod.GET,
 			produces="application/json;charset=UTF-8")
 	public String login(){
 		return "login";
@@ -26,13 +26,13 @@ public class BaseController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/login",method=RequestMethod.POST,
+	@RequestMapping(value="/test",method=RequestMethod.GET,
 	produces="application/json;charset=UTF-8")
 	public @ResponseBody String test(HttpServletRequest request) {
 		return "Mapped by path pattern ('" + request.getRequestURI() + "')";
 	}
 
-	@RequestMapping(value="/login1",method=RequestMethod.POST,
+	@RequestMapping(value="/login1",method=RequestMethod.GET,
 	produces="application/json;charset=UTF-8")
 	public @ResponseBody String login1(String name) {
 		return "login1";
@@ -43,7 +43,7 @@ public class BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/login2",method=RequestMethod.POST,
+	@RequestMapping(value="/login2",method=RequestMethod.GET,
 	produces="application/json;charset=UTF-8")
 	public @ResponseBody String login2(String name, Model model) {
 		model.addAttribute("name", name);
@@ -61,7 +61,7 @@ public class BaseController {
 	 * @param date
 	 * @return
 	 */
-	@RequestMapping(value="/{account}", method=RequestMethod.GET)
+	@RequestMapping(value="login/{account}", method=RequestMethod.GET)
 	public String show(@PathVariable String account, @RequestParam(required=false) String date) {
 		return "redirect/redirectResults";
 	}
