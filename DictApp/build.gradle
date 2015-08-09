@@ -41,3 +41,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+jettyRun{
+    webAppSourceDirectory file("$projectDir/src/main/webapp")
+    httpPort 8080
+    contextPath project.name
+    scanIntervalSeconds 0
+    reload "automatic"
+}
+
