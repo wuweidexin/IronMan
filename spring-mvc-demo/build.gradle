@@ -30,7 +30,6 @@ dependencies {
 		"javax.servlet.jsp:jsp-api:2.1",
 		"javax.servlet.jsp.jstl:jstl-api:1.2",
 		"org.glassfish.web:jstl-impl:1.2",
-		"org.glassfish.web:jstl-impl:1.2",
 		//<!-- Jackson JSON Processor -->
 		"com.fasterxml.jackson.core:jackson-databind:2.4.1",
     	

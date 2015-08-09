@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.sf.json.JSONObject;
 @Controller
+@RequestMapping(value="dict")
 public class DictController {
 	
-	@RequestMapping(value="/translate",method=RequestMethod.POST,
+	@RequestMapping(value="/translate.action",method=RequestMethod.POST,
 			produces="application/json;charset=UTF-8")
 	public @ResponseBody String generateResult(String text){
 		JSONObject reJson = null;
@@ -33,12 +34,16 @@ public class DictController {
 			if(null != str && str.trim().length() >0) {
 				reJson = JSONObject.fromObject(str.trim());
 				JSONObject smr = reJson.getJSONObject("smartResult");
-				String re = smr.optString("entries");
-				re = re.substring(4, re.length()-1); 
-				JSONObject json = new JSONObject();
-				json.accumulate("success", true);
-				json.accumulate("data", re);
-				return json.toString();
+				if(smr != null && smr.containsKey("entries")) {
+					String re = smr.optString("entries");
+					if(re.trim().length() > 4) {
+						re = re.substring(4, re.length()-1); 
+						JSONObject json = new JSONObject();
+						json.accumulate("success", true);
+						json.accumulate("data", re);
+						return json.toString();
+					}
+				}
 			}
 		}
 		return null;
