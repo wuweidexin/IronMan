@@ -52,4 +52,5 @@ jettyRun{
     scanIntervalSeconds 0
     reload "automatic"
 }
-
+//设置编译的时候支持中文，文件为utf-8编码
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
