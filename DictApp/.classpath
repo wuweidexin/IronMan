@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.2.0.RELEASE/509a011d16523f8b4c840783ea621ef478f95a68/spring-context-4.2.0.RELEASE-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.2.0.RELEASE/4c935619d8a74bdc4b11be71411ad6d629b3c2df/spring-context-4.2.0.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/net.sf.json-lib/json-lib/2.4/136743e0d12df4e785e62b48618cee169b2ae546/json-lib-2.4-jdk15.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.2.0.RELEASE/e7159959bff402d762c94c245bdabd254990b74f/spring-web-4.2.0.RELEASE-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.2.0.RELEASE/b21f7dfe6145ebe1ce6cd5d8853cceacf42e3380/spring-web-4.2.0.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp/jsp-api/2.1/1c9e754118cf8d3d85b6b1257fb6fb0f914d08c6/jsp-api-2.1-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/javax.servlet.jsp/jsp-api/2.1/63f943103f250ef1f3a4d5e94d145a0f961f5316/jsp-api-2.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.3/65cba03c4f6207f2885f88206fcf52c53f8d111b/httpclient-4.3.3-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.3.3/18f4247ff4572a074444572cee34647c43e7c9c7/httpclient-4.3.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.1.0/f1e8109969129dcc94a755d01954711091464540/jackson-annotations-2.1.0-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.1.0/adaa16df5f1ff56b40fb59362c83886f5413096c/jackson-annotations-2.1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/4809f38359edeea9487f747e09aa58ec8d3a54c5/httpcore-4.3.2-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/31fbbff1ddbf98f3aa7377c94d33b0447c646b6e/httpcore-4.3.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3.3/884b613cfc42948ad5d4cf507286ffe19592ebed/httpmime-4.3.3-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3.3/e02368d7b56c0c376f227378a4f77de62864d020/httpmime-4.3.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.12/58697792617f38bf86d8e26bc004aac505e516a9/slf4j-api-1.7.12-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.12/8e20852d05222dc286bf1c71d78d0531e177c317/slf4j-api-1.7.12.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.2.0.RELEASE/699226901b379075311a66102aaa8e8f6b34640c/spring-core-4.2.0.RELEASE-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.2.0.RELEASE/9c807aff0032dea05dcc17a477f2442139671ed7/spring-core-4.2.0.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.2.0.RELEASE/4e2a13469a30fac0efed7c4a5b3217afcf9b5433/spring-beans-4.2.0.RELEASE-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.2.0.RELEASE/3f3b38ccca8b5fa19a667e3c54c410ee404a39f0/spring-beans-4.2.0.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.2.0.RELEASE/b2a2c117ef67152537a93ec1e6f9f8c763f67059/spring-webmvc-4.2.0.RELEASE-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.2.0.RELEASE/158244f0d8f79654fa7860385fd3865db6f006ef/spring-webmvc-4.2.0.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.0/c2e1463355cc122f8fb3d2cf12b2005d0fa30553/jackson-core-2.1.0-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.0/6575afa4a9b3dc94dec2fa6082847e6987de651c/jackson-core-2.1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.1.0/c09c2894e3f1b320b6aeffb4d4e52ab120dbbc3e/jackson-databind-2.1.0-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.1.0/98364cd86063fe995199a1eb8268319d3e5db1f9/jackson-databind-2.1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.8.0/2818502bbb50bbcbd3f57e92a2bfe4d496f37688/commons-beanutils-1.8.0-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-beanutils/commons-beanutils/1.8.0/c651d5103c649c12b20d53731643e5fffceb536/commons-beanutils-1.8.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-collections/commons-collections/3.2.1/fa095ef874374e5b2a11f8b06c26a5d68c7cb3a4/commons-collections-3.2.1-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-collections/commons-collections/3.2.1/761ea405b9b37ced573d2df0d1e3a4e0f9edc668/commons-collections-3.2.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/ecf26c7507d67782a3bbd148d170b31dfad001aa/commons-logging-1.2-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.5/bb75ef699b349b6e02d17d41556cebcd755d07ab/commons-lang-2.5-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.5/b0236b252e86419eef20c31a44579d2aee2f0a69/commons-lang-2.5.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/net.sf.ezmorph/ezmorph/1.0.6/298992280d62b944afd0ae9bfe3329f5487dd434/ezmorph-1.0.6-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/net.sf.ezmorph/ezmorph/1.0.6/1e55d2a0253ea37745d33062852fd2c90027432/ezmorph-1.0.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/61e9f9d11fe3e12ec62f633006e99d75fd7f19c8/commons-codec-1.6-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.0.RELEASE/e36e1b61e777d1b45e396fc2e69a13708cbef817/spring-aop-4.2.0.RELEASE-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.0.RELEASE/59d0f2975b818859872211e219b0141d12843547/spring-aop-4.2.0.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.2.0.RELEASE/7c6fbbc85356c16189ab55dd45ce8b661fb256ad/spring-expression-4.2.0.RELEASE-sources.jar" kind="lib" path="E:/Users/kingdee/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.2.0.RELEASE/d578e5f975bd92de55a75e0865c0a0aca75e1b87/spring-expression-4.2.0.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+</classpath>
