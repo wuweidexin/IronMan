@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       http://www.springframework.org/schema/mvc 
+       http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-4.2.xsd 
+       http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd ">
+    
+	<mvc:resources location="/views/image/" mapping="/views/image/**"/> 
+	<mvc:resources location="/views/js/" mapping="/views/js/**"/> 
+	<!-- 配置数据源属性文件 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${password}"/>
+	</bean>
+	 <!--  -->
+	<!-- <mybatis:scan base-package="com.chen.test.mapping"/>   -->
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" /> 
+      <!--指定实体类映射文件，可以指定同时指定某一包以及子包下面的所有配置文件，
+      mapperLocations和configLocation有一个即可，当需要为实体类指定别名时，可指定configLocation属性，
+      	再在mybatis总配置文件中采用mapper引入实体类映射文件 -->
+      <property name="mapperLocations" value="classpath:com/chen/test/mapping/*.xml" />
+   </bean>
+	
+	<!-- 配置扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 扫描com.chen.test.dao这个包以及它的子包下的所有映射接口类 -->
+        <property name="basePackage" value="com.chen.test.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+	
+	<!-- ========================================分隔线========================================= -->
+    <!-- 配置Spring的事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+	
+	
+	<!-- 注解使用事务 直接在代码中注解实现事务-->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
+
+
+<!-- 配置事务管理 通过spring的切面来实现    这种事通过在这里限制过滤的方式来控制注解的，限制一般少用了，下面通过注解的方式来使用事务-->
+	<!--  
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="select*" read-only="true" propagation="REQUIRED"/>
+			<tx:method name="find*" read-only="true" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED" isolation="REPEATABLE_READ"/>
+			<tx:method name="update*" propagation="REQUIRED" isolation="REPEATABLE_READ"/>
+			<tx:method name="add*" propagation="REQUIRED" isolation="REPEATABLE_READ"/>
+			<tx:method name="delete*" propagation="REQUIRED" isolation="REPEATABLE_READ"/>
+			
+		</tx:attributes>
+	</tx:advice>
+	-->
